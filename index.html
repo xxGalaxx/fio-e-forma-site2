@@ -1,295 +1,235 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fio e Forma | Arte em Crochê Interativo</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  <style>
-    :root {
-      --gold: #e6c229;
-      --deep-blue: #0a2342;
-      --soft-white: #f8f5f2;
-      --stroke: #1a1a1a;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fio e Forma | Crochê Artesanal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --gold: #e6c229;
+            --deep-blue: #0a2342;
+            --soft-white: #f8f5f2;
+            --stroke: #1a1a1a;
+        }
 
-    body {
-      margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      background-color: var(--soft-white);
-      color: var(--stroke);
-      overflow-x: hidden;
-    }
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--soft-white);
+            color: var(--stroke);
+            overflow-x: hidden;
+        }
 
-    .canvas-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('imagens/fundo-vangogh-interativo.jpg') no-repeat center/cover;
-      z-index: -1;
-      opacity: 0.9;
-    }
+        .canvas-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('imagens/fundo-vangogh-interativo.jpg') no-repeat center/cover;
+            z-index: -1;
+            opacity: 0.9;
+        }
 
-    header {
-      position: relative;
-      background: rgba(10, 35, 66, 0.9);
-      overflow: hidden;
-      padding: 80px 30px;
-      text-align: center;
-      border-bottom: 2px solid var(--gold);
-      backdrop-filter: blur(5px);
-      transform-origin: top;
-      animation: brushStroke 1.5s ease-out forwards;
-    }
+        header {
+            background: rgba(10, 35, 66, 0.9);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--gold);
+            backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
+        }
 
-    .header-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at 30% 30%, rgba(230,194,41,0.3) 0%, transparent 50%),
-                  radial-gradient(circle at 70% 70%, rgba(230,194,41,0.2) 0%, transparent 50%);
-      animation: moveBackground 20s linear infinite;
-      z-index: 0;
-    }
+        .stitched-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            color: var(--gold);
+            margin: 0;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(90deg, var(--gold), #f0c420, var(--gold));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: stitching 3s linear infinite alternate;
+        }
 
-    @keyframes moveBackground {
-      0% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(-25%, -25%) scale(1.2); }
-      100% { transform: translate(0, 0) scale(1); }
-    }
+        @keyframes stitching {
+            0% { background-position: 0% center; }
+            100% { background-position: 100% center; }
+        }
 
-    .header-content {
-      position: relative;
-      z-index: 1;
-    }
+        .subheading {
+            color: var(--soft-white);
+            font-size: 1.4em;
+            margin-top: 10px;
+            letter-spacing: 1px;
+            animation: fadeIn 2s ease-in-out;
+        }
 
-    .stitched-text {
-      font-family: 'Playfair Display', serif;
-      font-size: 3.5em;
-      color: var(--gold);
-      letter-spacing: 3px;
-      overflow: hidden;
-      white-space: nowrap;
-      border-right: 3px solid var(--gold);
-      width: 0;
-      animation: typing 4s steps(30) forwards, blink 0.7s step-end infinite;
-      margin: 0 auto;
-      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
-    }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
+        .header-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: var(--gold);
+            color: var(--stroke);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            border-radius: 30px;
+            border: 2px solid var(--gold);
+            transition: background 0.3s, color 0.3s;
+        }
 
-    @keyframes blink {
-      0%, 100% { border-color: transparent; }
-      50% { border-color: var(--gold); }
-    }
+        .header-btn:hover {
+            background: var(--soft-white);
+            color: var(--deep-blue);
+        }
 
-    .subheading {
-      margin-top: 20px;
-      font-size: 1.5em;
-      color: var(--soft-white);
-      font-weight: 300;
-      letter-spacing: 1px;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-      animation: fadeInSubheading 2s ease forwards;
-    }
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 60px 20px;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-    @keyframes fadeInSubheading {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+        .product {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            overflow: hidden;
+            width: 300px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
 
-    .header-btn {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 12px 28px;
-      background: var(--gold);
-      color: var(--stroke);
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 40px;
-      font-size: 1.2em;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s ease;
-    }
+        .product:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
 
-    .header-btn:hover {
-      background: var(--soft-white);
-      color: var(--deep-blue);
-      transform: scale(1.05);
-    }
+        .product img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-bottom: 2px solid var(--gold);
+        }
 
-    .products {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 60px 20px;
-      gap: 30px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+        .product h2 {
+            font-family: 'Playfair Display', serif;
+            margin: 20px 0 10px;
+            color: var(--deep-blue);
+            font-size: 1.5em;
+        }
 
-    .product {
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 12px;
-      overflow: hidden;
-      width: 300px;
-      text-align: center;
-      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      border: 1px solid rgba(0, 0, 0, 0.05);
-      transform-style: preserve-3d;
-      will-change: transform;
-    }
+        .product p {
+            font-size: 1.2em;
+            color: #555;
+            margin: 0 0 20px;
+        }
 
-    .product:hover {
-      transform: translateY(-10px) rotateX(5deg) rotateY(2deg);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    }
+        .buy-btn {
+            display: inline-block;
+            margin-bottom: 25px;
+            padding: 10px 25px;
+            background: var(--deep-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1em;
+            transition: background 0.3s, color 0.3s;
+        }
 
-    .product img {
-      width: 100%;
-      height: 320px;
-      object-fit: cover;
-      border-bottom: 2px solid var(--gold);
-      transition: transform 0.5s;
-    }
+        .buy-btn:hover {
+            background: var(--gold);
+            color: var(--stroke);
+        }
 
-    .product:hover img {
-      transform: scale(1.03);
-    }
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: rgba(10, 35, 66, 0.95);
+            color: white;
+            margin-top: 60px;
+            font-family: 'Montserrat', sans-serif;
+            backdrop-filter: blur(5px);
+        }
 
-    .product h2 {
-      font-family: 'Playfair Display', serif;
-      margin: 20px 0 10px;
-      color: var(--deep-blue);
-      font-size: 1.6em;
-      position: relative;
-    }
-
-    .product p {
-      font-size: 1.3em;
-      color: #555;
-      margin: 0 0 20px;
-    }
-
-    .buy-btn {
-      display: inline-block;
-      margin: 0 auto 25px;
-      padding: 12px 30px;
-      background: var(--deep-blue);
-      color: white;
-      text-decoration: none;
-      border-radius: 30px;
-      font-weight: 600;
-      font-size: 1em;
-      transition: all 0.4s;
-      border: 2px solid var(--deep-blue);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .buy-btn:hover {
-      background: var(--gold);
-      color: var(--stroke);
-      border-color: var(--gold);
-    }
-
-    .buy-btn::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.2);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
-      mix-blend-mode: overlay;
-    }
-
-    .buy-btn:hover::after {
-      transform: scaleX(1);
-    }
-
-    footer {
-      text-align: center;
-      padding: 25px;
-      background: rgba(10, 35, 66, 0.95);
-      color: white;
-      margin-top: 60px;
-      font-family: 'Montserrat', sans-serif;
-      backdrop-filter: blur(5px);
-    }
-
-    @media (max-width: 768px) {
-      .products {
-        flex-direction: column;
-        align-items: center;
-      }
-      .product {
-        width: 90%;
-      }
-    }
-  </style>
+        @media (max-width: 768px) {
+            .products {
+                flex-direction: column;
+                align-items: center;
+            }
+            .product {
+                width: 90%;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-  <div class="canvas-bg"></div>
+    <div class="canvas-bg"></div>
 
-  <header>
-    <div class="header-bg"></div>
-    <div class="header-content">
-      <h1 class="stitched-text">Fio e Forma</h1>
-      <p class="subheading">Arte em Crochê Feita à Mão com Amor</p>
-      <a href="https://www.instagram.com/entrelacar.oficial?igsh=MXF0ZW1qaG5lbzI3bg==" target="_blank" class="header-btn">Conheça Mais</a>
-    </div>
-  </header>
+    <header>
+        <h1 class="stitched-text">Fio e Forma</h1>
+        <p class="subheading">Crochê artesanal, feito com amor.</p>
+        <a href="https://www.instagram.com/entrelacar.oficial?igsh=MXF0ZW1qaG5lbzI3bg==" class="header-btn" target="_blank">Conheça Mais</a>
+    </header>
 
-  <section class="products">
-    <div class="product">
-      <img src="imagens/flor-rapunzel.jpg" alt="Flor da Rapunzel">
-      <h2>Flor da Rapunzel</h2>
-      <p>R$ 22,75</p>
-      <a class="buy-btn" href="https://www.instagram.com/entrelacar.oficial?igsh=MXF0ZW1qaG5lbzI3bg==" target="_blank">Comprar</a>
-    </div>
+    <section class="products">
+        <div class="product">
+            <img src="imagens/flor-rapunzel.jpg" alt="Flor da Rapunzel com luzes">
+            <h2>Flor da Rapunzel com luzes</h2>
+            <p>R$ 36,40</p>
+            <a class="buy-btn" href="https://www.instagram.com/entrelacar.oficial?igsh=MXF0ZW1qaG5lbzI3bg==" target="_blank">Comprar</a>
+        </div>
 
-    <div class="product">
-      <img src="imagens/buque-1girassol.jpg" alt="Buquê Van Gogh 1 Girassol">
-      <h2>Buquê Van Gogh (1 girassol)</h2>
-      <p>R$ 48,60</p>
-      <a class="buy-btn" href="https://www.instagram.com/entrelacar.oficial?igsh=MXF0ZW1qaG5lbzI3bg==" target="_blank">Comprar</a>
-    </div>
+        <div class="product">
+            <img src="imagens/buque-1girassol.jpg" alt="Flor da Rapunzel sem luzes">
+            <h2>Flor da Rapunzel sem luzes</h2>
+            <p>R$ 22,75</p>
+            <a class="buy-btn" href="https://www.instagram.com/entrelacar.oficial?igsh=MXF0ZW1qaG5lbzI3bg==" target="_blank">Comprar</a>
+        </div>
 
-    <div class="product">
-      <img src="imagens/buque-3girassois.jpg" alt="Buquê Van Gogh 3 Girassóis">
-      <h2>Buquê Van Gogh (3 girassóis)</h2>
-      <p>R$ 56,80</p>
-      <a class="buy-btn" href="https://www.instagram.com/entrelacar.oficial?igsh=MXF0ZW1qaG5lbzI3bg==" target="_blank">Comprar</a>
-    </div>
-  </section>
+        <div class="product">
+            <img src="imagens/buque-3girassois.jpg" alt="Buquê Van Gogh (1 girassol)">
+            <h2>Buquê Van Gogh (1 girassol)</h2>
+            <p>R$ 48,60</p>
+            <a class="buy-btn" href="https://www.instagram.com/entrelacar.oficial?igsh=MXF0ZW1qaG5lbzI3bg==" target="_blank">Comprar</a>
+        </div>
 
-  <footer>
-    &copy; 2025 Fio e Forma - Arte em Crochê | Todos os direitos reservados.
-  </footer>
+        <div class="product">
+            <img src="imagens/Buque-de-flores-van-gogh.jpg" alt="Buquê de flores Van Gogh (três girassóis)">
+            <h2>Buquê de flores Van Gogh (três girassóis)</h2>
+            <p>R$ 56,80</p>
+            <a class="buy-btn" href="https://www.instagram.com/entrelacar.oficial?igsh=MXF0ZW1qaG5lbzI3bg==" target="_blank">Comprar</a>
+        </div>
+    </section>
 
-  <script>
-    // Efeito de parallax no background
-    document.addEventListener('scroll', function() {
-      const canvasBg = document.querySelector('.canvas-bg');
-      const scrollPosition = window.pageYOffset;
-      canvasBg.style.transform = 'translateY(' + scrollPosition * 0.5 + 'px)';
-    });
-  </script>
+    <footer>
+        &copy; 2025 Fio e Forma - Crochê Artesanal | Todos os direitos reservados.
+    </footer>
+
+    <script>
+        // Efeito parallax no fundo
+        document.addEventListener('scroll', function() {
+            const canvasBg = document.querySelector('.canvas-bg');
+            const scrollPosition = window.pageYOffset;
+            canvasBg.style.transform = 'translateY(' + scrollPosition * 0.5 + 'px)';
+        });
+    </script>
 
 </body>
 </html>

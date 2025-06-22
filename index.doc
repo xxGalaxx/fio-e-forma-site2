@@ -190,30 +190,16 @@
 
     <section class="products">
         <div class="product">
-            <img src="imagens/flor-rapunzel.jpg" alt="Flor da Rapunzel com luzes">
-            <h2>Flor da Rapunzel com luzes</h2>
-            <p>R$ 36,40</p>
-            <a class="buy-btn" href="https://www.instagram.com/entrelacar.oficial?igsh=MXF0ZW1qaG5lbzI3bg==" target="_blank">Comprar</a>
-        </div>
-
-        <div class="product">
             <img src="imagens/buque-1girassol.jpg" alt="Flor da Rapunzel sem luzes">
             <h2>Flor da Rapunzel sem luzes</h2>
-            <p>R$ 22,75</p>
-            <a class="buy-btn" href="https://www.instagram.com/entrelacar.oficial?igsh=MXF0ZW1qaG5lbzI3bg==" target="_blank">Comprar</a>
-        </div>
-
-        <div class="product">
-            <img src="imagens/buque-3girassois.jpg" alt="Buquê Van Gogh (1 girassol)">
-            <h2>Buquê Van Gogh (1 girassol)</h2>
-            <p>R$ 48,60</p>
+            <p>R$ 50,00</p>
             <a class="buy-btn" href="https://www.instagram.com/entrelacar.oficial?igsh=MXF0ZW1qaG5lbzI3bg==" target="_blank">Comprar</a>
         </div>
 
         <div class="product">
             <img src="imagens/Buque-de-flores-van-gogh.jpg" alt="Buquê de flores Van Gogh (três girassóis)">
             <h2>Buquê de flores Van Gogh (três girassóis)</h2>
-            <p>R$ 56,80</p>
+            <p>R$ 70,00</p>
             <a class="buy-btn" href="https://www.instagram.com/entrelacar.oficial?igsh=MXF0ZW1qaG5lbzI3bg==" target="_blank">Comprar</a>
         </div>
     </section>
